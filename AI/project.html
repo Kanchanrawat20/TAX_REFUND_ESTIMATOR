@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Refund Estimator</title>
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>💰 Tax Refund Estimator</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#calculator">Calculator</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Estimate Your Tax Refund</h1>
+                <p>Get a quick estimate of your potential tax refund with our easy-to-use calculator. 
+                   Our AI chatbot can also answer your tax-related questions.</p>
+                <button id="get-started" class="btn">Get Started <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <section id="calculator" class="calculator-section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Tax Refund Calculator</h2>
+                    <p>Fill in the information below to estimate your potential tax refund</p>
+                </div>
+                <div class="card-body">
+                    <div class="step-indicators">
+                        <div class="step active" data-step="1">1</div>
+                        <div class="step" data-step="2">2</div>
+                        <div class="step" data-step="3">3</div>
+                        <div class="step" data-step="4">4</div>
+                    </div>
+                    
+                    <form id="tax-calculator-form">
+                        <!-- Step 1: Personal Information -->
+                        <div class="form-step" id="step-1">
+                            <h3>Personal Information</h3>
+                            
+                            <div class="form-group">
+                                <label for="filing-status">Filing Status</label>
+                                <select id="filing-status" name="filingStatus" required>
+                                    <option value="">Select your filing status</option>
+                                    <option value="single">Single</option>
+                                    <option value="married_joint">Married Filing Jointly</option>
+                                    <option value="married_separate">Married Filing Separately</option>
+                                    <option value="head">Head of Household</option>
+                                    <option value="widow">Qualifying Widow(er)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="number" id="age" name="age" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="dependents">Number of Dependents</label>
+                                <input type="number" id="dependents" name="dependents" min="0" value="0">
+                            </div>
+                            
+                            <div class="form-group checkbox">
+                                <input type="checkbox" id="disability" name="disability">
+                                <label for="disability">Do you have a qualified disability?</label>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-primary" id="next-to-2">Next</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Income Information -->
+                        <div class="form-step" id="step-2" style="display: none;">
+                            <h3>Income Information</h3>
+                            
+                            <div class="form-group">
+                                <label for="wages">Wages, Salaries, Tips (₹)</label>
+                                <input type="number" id="wages" name="wages" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="self-employment">Self-Employment Income (₹)</label>
+                                <input type="number" id="self-employment" name="selfEmploymentIncome" min="0" value="0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="investment">Investment Income (₹)</label>
+                                <input type="number" id="investment" name="investmentIncome" min="0" value="0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="other-income">Other Income (₹)</label>
+                                <input type="number" id="other-income" name="otherIncome" min="0" value="0">
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-secondary" id="prev-to-1">Previous</button>
+                                <button type="button" class="btn btn-primary" id="next-to-3">Next</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Deductions Information -->
+                        <div class="form-step" id="step-3" style="display: none;">
+                            <h3>Deductions & Credits</h3>
+                            
+                            <div class="form-group">
+                                <label for="tax-withheld">Tax Withheld (₹)</label>
+                                <input type="number" id="tax-withheld" name="taxWithheld" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="student-loan">Student Loan Interest (₹)</label>
+                                <input type="number" id="student-loan" name="studentLoanInterest" min="0" value="0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="charitable">Charitable Contributions (₹)</label>
+                                <input type="number" id="charitable" name="charitableContributions" min="0" value="0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="medical">Medical Expenses (₹)</label>
+                                <input type="number" id="medical" name="medicalExpenses" min="0" value="0">
+                            </div>
+                            
+                            <div class="form-group checkbox">
+                                <input type="checkbox" id="child-tax-credit" name="childTaxCredit">
+                                <label for="child-tax-credit">Are you eligible for Child Tax Credit?</label>
+                            </div>
+                            
+                            <div class="form-group checkbox">
+                                <input type="checkbox" id="education-credits" name="educationCredits">
+                                <label for="education-credits">Are you eligible for Education Credits?</label>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-secondary" id="prev-to-2">Previous</button>
+                                <button type="button" class="btn btn-success" id="calculate-btn">Calculate Refund</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4: Results -->
+                        <div class="form-step" id="step-4" style="display: none;">
+                            <h3>Your Estimated Tax Results</h3>
+                            
+                            <div class="results-container">
+                                <div class="result-item">
+                                    <div class="result-label">Total Income</div>
+                                    <div class="result-value" id="result-total-income">₹0</div>
+                                </div>
+                                
+                                <div class="result-item">
+                                    <div class="result-label">Total Deductions</div>
+                                    <div class="result-value" id="result-total-deductions">₹0</div>
+                                </div>
+                                
+                                <div class="result-item">
+                                    <div class="result-label">Tax Liability</div>
+                                    <div class="result-value" id="result-tax-liability">₹0</div>
+                                </div>
+                                
+                                <div class="result-item">
+                                    <div class="result-label">Tax Withheld</div>
+                                    <div class="result-value" id="result-tax-withheld">₹0</div>
+                                </div>
+                                
+                                <div class="result-item">
+                                    <div class="result-label">Total Credits</div>
+                                    <div class="result-value" id="result-total-credits">₹0</div>
+                                </div>
+                                
+                                <div class="result-item highlight">
+                                    <div class="result-label">Estimated Refund</div>
+                                    <div class="result-value" id="result-estimated-refund">₹0</div>
+                                </div>
+                            </div>
+                            
+                            <div class="results-disclaimer">
+                                <p><i class="fas fa-info-circle"></i> This is only an estimate. Your actual tax refund may vary based on your complete tax situation.</p>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="btn btn-secondary" id="prev-to-3">Previous</button>
+                                <button type="button" class="btn btn-primary" id="reset-calculator">Start Over</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="resources-section">
+            <h2>Tax Resources</h2>
+            <div class="resource-cards">
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Tax Forms</h3>
+                    <p>Download the latest tax forms and instructions.</p>
+                    <a href="#" class="resource-link">View Forms</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3>Important Dates</h3>
+                    <p>Stay informed about tax filing deadlines.</p>
+                    <a href="#" class="resource-link">View Calendar</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fas fa-question-circle"></i></div>
+                    <h3>Tax FAQ</h3>
+                    <p>Find answers to common tax questions.</p>
+                    <a href="#" class="resource-link">Read FAQ</a>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fas fa-book"></i></div>
+                    <h3>Tax Guide</h3>
+                    <p>Comprehensive guide to understanding taxes.</p>
+                    <a href="#" class="resource-link">Read Guide</a>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="about-section">
+            <h2>Welcome to the Tax Refund Estimator</h2>
+            <p>
+                Confused about how much tax refund you might get? Don't worry — we’ve got you covered!
+            </p>
+            <p>
+                Our <strong>Tax Refund Estimator</strong> is a simple, fast, and user-friendly tool built to help you estimate your tax refund in just a few clicks. Whether you're a salaried employee, freelancer, or juggling multiple sources of income — this tool makes it easy for everyone.
+            </p>
+            <p>
+                Just enter your details step by step using our clean and intuitive forms, and let our smart system do the math for you. The best part? It’s completely hassle-free and available anytime you need it.
+            </p>
+            <p>
+                💡 Need help while using the tool? Chat with our <strong>AI-powered assistant</strong> — available 24/7 to answer your basic tax-related queries!
+            </p>
+        </section>
+        
+    </main>
+
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-toggle">
+            <button id="chatbot-toggle-btn">
+                <i class="fas fa-comments"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-container" style="display: none;">
+            <div class="chatbot-header">
+                <h3>Tax Assistant</h3>
+                <button id="chatbot-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbot-messages">
+                <!-- Bot messages will be populated dynamically -->
+            </div>
+            
+            <div class="chatbot-input">
+                <form id="chatbot-form">
+                    <input type="text" id="chatbot-input-text" placeholder="Type your tax question here..." autocomplete="off">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Tax Refund Estimator. All rights reserved.</p>
+            <p class="disclaimer">This calculator provides estimates only and should not be considered financial or tax advice.</p>
+        </div>
+    </footer>
+
+    <script src="project.js"></script>
+</body>
+</html>
