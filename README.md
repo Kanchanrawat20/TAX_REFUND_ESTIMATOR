@@ -12,4 +12,4 @@ A user-friendly web application that helps individuals estimate their tax refund
 HTML5, CSS3, JavaScript
 Responsive Web Design
 Custom CSS Variables
-Basic AI Chatbot Integration
+Basic AI Chatbot Integration.
