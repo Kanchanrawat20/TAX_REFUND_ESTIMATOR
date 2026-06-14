@@ -1,4 +1,4 @@
-🧾 Tax Refund Estimator
+Tax Refund Estimator
 A user-friendly web application that helps individuals estimate their tax refunds quickly and easily. Ideal for salaried employees, freelancers, and those with multiple income sources.
 
 Features
