@@ -12,4 +12,4 @@ Technologies Used
   HTML5, CSS3, JavaScript
   Responsive Web Design
   Custom CSS Variables
-  Basic AI Chatbot Integration.
+  AI Chatbot Integration.
